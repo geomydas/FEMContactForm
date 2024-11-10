@@ -27,22 +27,38 @@ function hide(input) {
   input.classList.remove("block");
 }
 
-function renderError(input) {
-  const inputErrorMessage = document.querySelector(`#${input.name}-error-message`);
-  input.classList.add("border-red");
-  input.classList.remove("border-grey-900");
+function ariaInvalid(input) {
   input.setAttribute("aria-invalid", "true");
   input.removeAttribute("aria-invalid", "false");
+}
+
+function ariaValid(input) {
+  input.setAttribute("aria-invalid", "false");
+  input.removeAttribute("aria-invalid", "true");
+}
+
+function showRedBorder(input) {
+  input.classList.add("border-red");
+  input.classList.remove("border-grey-900");
+}
+
+function hideRedBorder(input) {
+  input.classList.add("border-grey-900");
+  input.classList.remove("border-red");
+}
+
+function renderError(input) {
+  const inputErrorMessage = document.querySelector(`#${input.name}-error-message`);
+  showRedBorder(input);
+  ariaInvalid(input);
   show(inputErrorMessage);
   inputErrorMessage.textContent = inputErrorMessage.getAttribute("data-content");
 }
 
 function clearError(input) {
   const inputErrorMessage = document.querySelector(`#${input.name}-error-message`);
-  input.classList.add("border-grey-900");
-  input.classList.remove("border-red");
-  input.setAttribute("aria-invalid", "false");
-  input.removeAttribute("aria-invalid", "true");
+  hideRedBorder(input);
+  ariaValid(input);
   hide(inputErrorMessage);
   inputErrorMessage.textContent = "";
 }
@@ -89,11 +105,10 @@ function renderSuccess(form, toast) {
   form.reset();
   show(toast);
   setTimeout(hideToast, 7000);
-
   // gotta make another function since using function params like () or (thing) fucks with setTimeout(). hideToast works but hideToast() doesnt
 
   function hideToast() {
-    hide(toast)
+    hide(toast);
   }
 }
 
