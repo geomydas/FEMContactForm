@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Frontend Mentor | Contact form" />
+    <meta name="author" content="geomydas" />
+    <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32x32.png" />
+    <link rel="stylesheet" href="./output.css" />
+    <style>
+      @font-face {
+        font-style: normal;
+        font-weight: 400;
+        src: url("../fonts/karla-v31-latin-regular.woff2") format("woff2");
+        font-family: "Karla";
+        font-display: swap;
+      }
+
+      @font-face {
+        font-style: normal;
+        font-weight: 700;
+        src: url("../fonts/karla-v31-latin-700.woff2") format("woff2");
+        font-family: "Karla";
+        font-display: swap;
+      }
+    </style>
+    <script src="./script.js" defer></script>
+    <title>Frontend Mentor | Contact form</title>
+  </head>
+  <body
+    class="flex flex-col bg-green-200 px-4 text-grey-900 py-8 justify-center items-center min-h-screen font-karla font-normal text-base leading-normal"
+  >
+    <main class="w-full max-w-3xl">
+      <form
+        class="bg-white accent-green-600 rounded-2xl ~min-[20rem]/sm:~px-4/8 ~min-[20rem]/sm:~py-6/10 space-y-6"
+        action=""
+        method="post"
+        novalidate
+        data-js="form"
+      >
+        <h1 class="font-bold text-2xl">Contact Us</h1>
+        <div
+          class="space-y-6 sm:grid sm:grid-cols-2 sm:grid-rows-1 sm:space-y-0 sm:space-x-4"
+        >
+          <div class="space-y-2">
+            <label class="after:content-['_*'] after:text-green-600" for="first-name"
+              >First Name</label
+            >
+            <input
+              class="block w-full rounded-md border p-2 border-grey-900 focus:outline-2 focus:border-transparent focus:outline-green-600"
+              id="first-name"
+              autocomplete="off"
+              type="name"
+              name="first-name"
+              required
+              aria-required="true"
+              aria-invalid="false"
+              aria-describedby="first-name-error-message"
+              data-js="first-name"
+            />
+            <span
+              class="hidden text-red"
+              id="first-name-error-message"
+              aria-live="polite"
+              data-content="This field is required"
+            ></span>
+          </div>
+          <div class="space-y-2">
+            <label class="after:content-['_*'] after:text-green-600" l for="last-name"
+              >Last Name</label
+            >
+            <input
+              class="block w-full rounded-md border p-2 border-grey-900 focus:outline-2 focus:border-transparent focus:outline-green-600"
+              id="last-name"
+              autocomplete="off"
+              type="name"
+              name="last-name"
+              required
+              aria-required="true"
+              aria-invalid="false"
+              aria-describedby="last-name-error-message"
+              data-js="last-name"
+            />
+            <span
+              class="hidden text-red"
+              id="last-name-error-message"
+              aria-live="polite"
+              data-content="This field is required"
+            ></span>
+          </div>
+        </div>
+
+        <div class="space-y-2">
+          <label class="after:content-['_*'] after:text-green-600" for="email"
+            >Email Address</label
+          >
+          <input
+            class="block w-full rounded-md border p-2 border-grey-900 focus:outline-2 focus:border-transparent focus:outline-green-600"
+            id="email"
+            autocomplete="off"
+            type="email"
+            name="email"
+            required
+            aria-required="true"
+            aria-invalid="false"
+            aria-describedby="email-error-message"
+            data-js="email"
+          />
+          <span
+            class="hidden text-red"
+            id="email-error-message"
+            aria-live="polite"
+            data-content="Please enter a valid email address"
+          ></span>
+        </div>
+
+        <fieldset class="space-y-2" aria-describedby="query-type-error-message">
+          <legend class="">Query Type</legend>
+          <div
+            class="space-y-2 sm:space-y-0 sm:grid sm:grid-cols-2 sm:grid-rows-1 sm:space-x-4"
+          >
+            <div
+              class="has-[:checked]:bg-green-200 has-[:checked]:border-green-600 border border-grey-900 rounded-md py-2 px-4 gap-4 flex items-center flex-row-reverse justify-end"
+            >
+              <label for="general-enquiry">General Enquiry</label>
+              <input
+                id="general-enquiry"
+                type="radio"
+                name="query-type"
+                required
+                aria-required="true"
+                aria-invalid="false"
+                data-js="general-enquiry"
+              />
+            </div>
+            <div
+              class="has-[:checked]:bg-green-200 has-[:checked]:border-green-600 border border-grey-900 rounded-md py-2 px-4 gap-4 flex items-center flex-row-reverse justify-end"
+            >
+              <label for="support-request">Support Request</label>
+              <input
+                id="support-request"
+                type="radio"
+                name="query-type"
+                required
+                aria-required="true"
+                aria-invalid="false"
+                data-js="support-request"
+              />
+            </div>
+          </div>
+          <span
+            class="hidden text-red"
+            id="query-type-error-message"
+            aria-live="polite"
+            data-content="Please select a query type"
+          ></span>
+        </fieldset>
+
+        <div class="space-y-2">
+          <label class="after:content-['_*'] after:text-green-600" for="message"
+            >Message</label
+          >
+          <input
+            class="block w-full min-h-32 rounded-md border p-2 border-grey-900 focus:outline-2 focus:border-transparent focus:outline-green-600"
+            id="message"
+            autocomplete="off"
+            type="text"
+            name="message"
+            required
+            aria-required="true"
+            aria-invalid="false"
+            aria-describedby="message-error-message"
+            data-js="message"
+          />
+          <span
+            class="hidden text-red"
+            id="message-error-message"
+            aria-live="polite"
+            data-content="This field is required"
+          ></span>
+        </div>
+
+        <div class="space-y-2">
+          <div class="flex flex-row-reverse gap-4 items-center justify-end">
+            <label class="after:content-['_*'] after:text-green-600" for="consent"
+              >I consent to being contacted by the team</label
+            >
+            <input
+              id="consent"
+              type="checkbox"
+              name="consent"
+              required
+              aria-required="true"
+              aria-invalid="false"
+              aria-describedby="consent-error-message"
+              data-js="consent"
+            />
+          </div>
+          <span
+            class="hidden text-red"
+            id="consent-error-message"
+            aria-live="polite"
+            data-content="To submit this form, please consent to being contacted"
+          ></span>
+        </div>
+
+        <button
+          class="text-white block w-full bg-green-600 p-2 rounded-md transition hover:bg-grey-900"
+          type="submit"
+        >
+          Submit
+        </button>
+      </form>
+    </main>
+  </body>
+</html>
