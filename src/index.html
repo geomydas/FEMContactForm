@@ -31,6 +31,18 @@
     class="flex flex-col bg-green-200 px-4 text-grey-900 py-8 justify-center items-center min-h-screen font-karla font-normal text-base leading-normal"
   >
     <main class="w-full max-w-3xl">
+      <div
+        class="bg-grey-900 p-4 rounded-md mx-auto w-fit hidden"
+        aria-live="assertive"
+        role="alert"
+        data-js="toast"
+      >
+        <div class="flex items-center gap-4 mb-4">
+          <img src="../images/icon-success-check.svg" alt="" aria-hidden="true" />
+          <h2 class="text-white font-bold">Message Sent!</h2>
+        </div>
+        <p class="text-white">Thanks for completing the form. We'll be in touch soon!</p>
+      </div>
       <form
         class="bg-white accent-green-600 rounded-2xl ~min-[20rem]/sm:~px-4/8 ~min-[20rem]/sm:~py-6/10 space-y-6"
         action=""

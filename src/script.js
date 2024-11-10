@@ -1,4 +1,5 @@
 const form = document.querySelector("[data-js='form']");
+const toast = document.querySelector("[data-js='toast']");
 const inputFirstName = document.querySelector("[data-js='first-name']");
 const inputLastName = document.querySelector("[data-js='last-name']");
 const inputEmail = document.querySelector("[data-js='email']");
@@ -16,25 +17,33 @@ const inputs = [
   inputConsent,
 ];
 
+function show(input) {
+  input.classList.add("block");
+  input.classList.remove("hidden");
+}
+
+function hide(input) {
+  input.classList.add("hidden");
+  input.classList.remove("block");
+}
+
 function renderError(input) {
   const inputErrorMessage = document.querySelector(`#${input.name}-error-message`);
-  input.classList.add("border-red")
-  input.classList.remove('border-grey-900')
+  input.classList.add("border-red");
+  input.classList.remove("border-grey-900");
   input.setAttribute("aria-invalid", "true");
   input.removeAttribute("aria-invalid", "false");
-  inputErrorMessage.classList.add("block");
-  inputErrorMessage.classList.remove("hidden");
+  show(inputErrorMessage);
   inputErrorMessage.textContent = inputErrorMessage.getAttribute("data-content");
 }
 
 function clearError(input) {
   const inputErrorMessage = document.querySelector(`#${input.name}-error-message`);
-  input.classList.add('border-grey-900')
-  input.classList.remove("border-red")
+  input.classList.add("border-grey-900");
+  input.classList.remove("border-red");
   input.setAttribute("aria-invalid", "false");
   input.removeAttribute("aria-invalid", "true");
-  inputErrorMessage.classList.add("hidden");
-  inputErrorMessage.classList.remove("block");
+  hide(inputErrorMessage);
   inputErrorMessage.textContent = "";
 }
 
@@ -76,11 +85,23 @@ function testValidity(input) {
   }
 }
 
-function renderSuccess(form, alert) {
+function renderSuccess(form, toast) {
   form.reset();
-  alert.classList.add("block");
-  alert.classList.remove("hidden");
+  show(toast);
+  setTimeout(hideToast, 7000);
+
+  // gotta make another function since using function params like () or (thing) fucks with setTimeout(). hideToast works but hideToast() doesnt
+
+  function hideToast() {
+    hide(toast)
+  }
 }
+
+inputs.forEach((input) => {
+  input.addEventListener("input", function () {
+    testValidity(input);
+  });
+});
 
 form.addEventListener("submit", function (e) {
   e.preventDefault();
@@ -90,6 +111,6 @@ form.addEventListener("submit", function (e) {
   });
 
   if (form.checkValidity() && testValidity(inputEmail)) {
-    renderSuccess(form);
+    renderSuccess(form, toast);
   }
 });
