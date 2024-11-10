@@ -6,8 +6,6 @@ const inputGeneralEnquiry = document.querySelector("[data-js='general-enquiry']"
 const inputSupportRequest = document.querySelector("[data-js='support-request']");
 const inputMessage = document.querySelector("[data-js='message']");
 const inputConsent = document.querySelector("[data-js='consent']");
-const inputText = [inputFirstName, inputLastName, inputMessage];
-const inputButton = [inputGeneralEnquiry, inputSupportRequest];
 const inputs = [
   inputFirstName,
   inputLastName,
@@ -20,6 +18,8 @@ const inputs = [
 
 function renderError(input) {
   const inputErrorMessage = document.querySelector(`#${input.name}-error-message`);
+  input.classList.add("border-red")
+  input.classList.remove('border-grey-900')
   input.setAttribute("aria-invalid", "true");
   input.removeAttribute("aria-invalid", "false");
   inputErrorMessage.classList.add("block");
@@ -29,6 +29,8 @@ function renderError(input) {
 
 function clearError(input) {
   const inputErrorMessage = document.querySelector(`#${input.name}-error-message`);
+  input.classList.add('border-grey-900')
+  input.classList.remove("border-red")
   input.setAttribute("aria-invalid", "false");
   input.removeAttribute("aria-invalid", "true");
   inputErrorMessage.classList.add("hidden");
@@ -74,9 +76,10 @@ function testValidity(input) {
   }
 }
 
-function renderSuccess () {
-  form.reset()
-  
+function renderSuccess(form, alert) {
+  form.reset();
+  alert.classList.add("block");
+  alert.classList.remove("hidden");
 }
 
 form.addEventListener("submit", function (e) {
@@ -87,6 +90,6 @@ form.addEventListener("submit", function (e) {
   });
 
   if (form.checkValidity() && testValidity(inputEmail)) {
-    renderSuccess()
+    renderSuccess(form);
   }
 });
