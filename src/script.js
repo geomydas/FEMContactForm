@@ -125,7 +125,15 @@ form.addEventListener("submit", function (e) {
     testValidity(input);
   });
 
-  if (form.checkValidity() && testValidity(inputEmail)) {
+  if (
+    testValidity(inputs[0]) &&
+    testValidity(inputs[1]) &&
+    testValidity(inputs[2]) &&
+    testValidity(inputs[3]) &&
+    testValidity(inputs[4]) &&
+    testValidity(inputs[5]) &&
+    testValidity(inputs[6])
+  ) {
     renderSuccess(form, toast);
   }
 });
