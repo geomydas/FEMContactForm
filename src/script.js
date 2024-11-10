@@ -36,45 +36,57 @@ function clearError(input) {
   inputErrorMessage.textContent = "";
 }
 
-function testValidityEmail(input) {
-  const regexEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-  const isValid = regexEmail.test(input.value);
+function testValidity(input) {
+  switch (input.getAttribute("type")) {
+    case "email":
+      const regexEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+      const isValid = regexEmail.test(input.value);
 
-  if (!isValid) {
-    renderError(input);
-  } else {
-    clearError(input);
+      if (!isValid) {
+        renderError(input);
+        return false;
+      } else {
+        clearError(input);
+        return true;
+      }
+
+    case "text":
+    case "name":
+      const value = input.value;
+
+      if (value.trim() === "") {
+        renderError(input);
+        return false;
+      } else {
+        clearError(input);
+        return true;
+      }
+
+    case "checkbox":
+    case "radio":
+      if (!input.validity.valid) {
+        renderError(input);
+        return false;
+      } else {
+        clearError(input);
+        return true;
+      }
   }
 }
 
-function testValidityText(input) {
-  const value = input.value;
-
-  if (value.trim() === "") {
-    renderError(input);
-  } else {
-    clearError(input);
-  }
-}
-
-function testValidityButton(input) {
-  if (!input.validity.valid) {
-    renderError(input);
-  } else {
-    clearError(input);
-  }
+function renderSuccess () {
+  form.reset()
+  
 }
 
 form.addEventListener("submit", function (e) {
   e.preventDefault();
 
-  inputText.forEach((input) => {
-    testValidityText(input);
+  inputs.forEach((input) => {
+    testValidity(input);
   });
 
-  testValidityEmail(inputEmail);
-
-  inputButton.forEach((input) => {
-    testValidityButton(button);
-  });
+  if (form.checkValidity() && testValidity(inputEmail)) {
+    renderSuccess()
+  }
 });
