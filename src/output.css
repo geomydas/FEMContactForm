@@ -596,6 +596,10 @@ video {
   max-width: 48rem;
 }
 
+.resize-none {
+  resize: none;
+}
+
 .flex-row-reverse {
   flex-direction: row-reverse;
 }

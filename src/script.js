@@ -64,7 +64,7 @@ function clearError(input) {
 }
 
 function testValidity(input) {
-  switch (input.getAttribute("type")) {
+  switch (input.getAttribute("data-type")) {
     case "email":
       const regexEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
       const isValid = regexEmail.test(input.value);
