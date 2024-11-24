@@ -48,7 +48,9 @@ function hideRedBorder(input) {
 }
 
 function renderError(input) {
-  const inputErrorMessage = document.querySelector(`#${input.name}-error-message`);
+  const inputErrorMessage = document.querySelector(
+    `#${input.getAttribute("name")}-error-message`,
+  );
   showRedBorder(input);
   ariaInvalid(input);
   show(inputErrorMessage);
@@ -56,7 +58,9 @@ function renderError(input) {
 }
 
 function clearError(input) {
-  const inputErrorMessage = document.querySelector(`#${input.name}-error-message`);
+  const inputErrorMessage = document.querySelector(
+    `#${input.getAttribute("name")}-error-message`,
+  );
   hideRedBorder(input);
   ariaValid(input);
   hide(inputErrorMessage);
